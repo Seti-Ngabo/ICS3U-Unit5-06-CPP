@@ -2,50 +2,46 @@
 //
 // Created by: Seti Ngabo
 // Created on: Oct 2021
-// This program rounds off to the nearest number
+// This program rounds off to the nearest firstSum
 //   with user input
 
-
 #include <iostream>
-#include <string>
 #include <cmath>
+#include <iomanip>
+#include <string>
 
-void roundOff(float &userInteger, int &secUserInteger) {
-    // This Program rounds off number
-    float firstSum;
-    int secondSum;
+void roundOff(float &firstSum, int decimal) {
+    // This Program rounds off firstSum
 
     // process
-    firstSum = userInteger * pow(10, secUserInteger) + 0.5;
-    secondSum = firstSum;
-    userInteger = secondSum / pow(10, secUserInteger);
+    firstSum = firstSum * pow(10, decimal) + 0.5;
+    firstSum = static_cast<int>(firstSum);
+    firstSum = firstSum / pow(10, decimal);
 }
 
-main() {
+int main() {
     // this function accepts inputs
-    std::string userString;
-    float userInteger;
-    std::string secUserString;
-    int secUserInteger;
 
-    // input
-    std::cout << "Enter the number you want to round off: ";
-    std::cin >> userString;
-    std::cout << "Enter how many decimal places you want to round by: ";
-    std::cin >> secUserString;
-    std::cout << "" << std::endl;
+    float userfirstSum;
+    int decimalInt;
+    std::string userInput;
+    std::string decimalPoints;
 
     try {
-        userInteger = std::stof(userString);
-        secUserInteger = std::stoi(secUserString);
+        // input
+        std::cout << "Enter the number to round off: ";
+        std::cin >> userInput;
+        userfirstSum = std::stof(userInput);
+        std::cout << "How many decimal places do you want to round off: ";
+        std::cin >> decimalPoints;
+        decimalInt = std::stoi(decimalPoints);
 
-        // call functions
-        roundOff(userInteger, secUserInteger);
+        roundOff(userfirstSum, decimalInt);
 
         // output
-        std::cout << "The rounded number is " << userInteger << std::endl;
+        std::cout << "\nThe rounded number is " << userfirstSum << std::endl;
     } catch (std::invalid_argument) {
-        std::cout << "Invalid input, try again." << std::endl;
+        std::cout << "\nInvalid input, try again." << std::endl;
     }
 
     std::cout << "\nDone." << std::endl;
